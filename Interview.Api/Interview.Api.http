@@ -1,0 +1,13 @@
+@Interview.Api_HostAddress = http://localhost:5166
+
+### Home Controller - Get
+GET {{Interview.Api_HostAddress}}/api/home
+Accept: application/json
+
+###
+
+### Swagger UI
+GET {{Interview.Api_HostAddress}}/swagger
+Accept: application/json
+
+###
