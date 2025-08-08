@@ -15,6 +15,9 @@ namespace Interview.Infrastructure.Data
         public DbSet<City> Cities { get; set; }
         public DbSet<PhoneType> PhoneTypes { get; set; }
         public DbSet<RelationType> RelationTypes { get; set; }
+        
+        // Config Entities
+        public DbSet<DictionaryName> DictionaryNames { get; set; }
 
         // Person Entities
         public DbSet<Person> Persons { get; set; }
