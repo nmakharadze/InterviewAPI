@@ -1,5 +1,7 @@
-using Interview.Application.Commands.Person;
-using Interview.Application.DTOs.Person;
+using Interview.Application.PersonPhoneNumber.Commands.Create;
+using Interview.Application.PersonPhoneNumber.Commands.Delete;
+using Interview.Application.PersonPhoneNumber.Commands.Update;
+using Interview.Application.Persons.Queries.GetDetail;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +30,7 @@ public class PhoneNumberController : ControllerBase
     [HttpPost("{personId}/phone-numbers")]
     public async Task<ActionResult<PhoneNumberDto>> AddPhoneNumber(int personId, [FromBody] CreatePhoneNumberDto request)
     {
-        var command = new AddPhoneNumberCommand
+        var command = new CreatePhoneNumberCommand
         {
             PersonId = personId,
             PhoneTypeId = request.PhoneTypeId,

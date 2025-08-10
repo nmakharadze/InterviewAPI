@@ -1,5 +1,7 @@
-using Interview.Application.Commands.Person;
-using Interview.Application.DTOs.Person;
+using Interview.Application.PersonRelation.Commands.Create;
+using Interview.Application.PersonRelation.Commands.Delete;
+using Interview.Application.PersonRelation.Commands.Update;
+using Interview.Application.Persons.Queries.GetDetail;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +30,7 @@ public class RelationController : ControllerBase
     [HttpPost("{personId}/relations")]
     public async Task<ActionResult<RelationDto>> AddRelation(int personId, [FromBody] CreateRelationDto request)
     {
-        var command = new AddRelationCommand
+        var command = new CreateRelationCommand
         {
             PersonId = personId,
             RelatedPersonId = request.RelatedPersonId,

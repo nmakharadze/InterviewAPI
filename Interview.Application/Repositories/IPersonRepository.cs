@@ -19,16 +19,16 @@ public interface IPersonRepository : IGenericRepository<Person>
     Task<IEnumerable<Person>> SearchAsync(string? searchTerm, int? cityId, int? genderId, int page, int pageSize);
     
     // Phone Number operations
-    Task<PersonPhoneNumber?> GetPhoneNumberByIdAsync(int id);
-    Task<IEnumerable<PersonPhoneNumber>> GetPhoneNumbersByPersonIdAsync(int personId);
-    Task<PersonPhoneNumber> AddPhoneNumberAsync(PersonPhoneNumber phoneNumber);
-    Task<PersonPhoneNumber> UpdatePhoneNumberAsync(PersonPhoneNumber phoneNumber);
+    Task<Interview.Domain.Entities.Person.PersonPhoneNumber?> GetPhoneNumberByIdAsync(int id);
+    Task<IEnumerable<Interview.Domain.Entities.Person.PersonPhoneNumber>> GetPhoneNumbersByPersonIdAsync(int personId);
+    Task<Interview.Domain.Entities.Person.PersonPhoneNumber> AddPhoneNumberAsync(Interview.Domain.Entities.Person.PersonPhoneNumber phoneNumber);
+    Task<Interview.Domain.Entities.Person.PersonPhoneNumber> UpdatePhoneNumberAsync(Interview.Domain.Entities.Person.PersonPhoneNumber phoneNumber);
     Task DeletePhoneNumberAsync(int id);
     
     // Relation operations
-    Task<PersonRelation?> GetRelationByIdAsync(int id);
-    Task<IEnumerable<PersonRelation>> GetRelationsByPersonIdAsync(int personId);
-    Task<PersonRelation> AddRelationAsync(PersonRelation relation);
-    Task<PersonRelation> UpdateRelationAsync(PersonRelation relation);
+    Task<Interview.Domain.Entities.Person.PersonRelation?> GetRelationByIdAsync(int id);
+    Task<IEnumerable<Interview.Domain.Entities.Person.PersonRelation>> GetRelationsByPersonIdAsync(int personId);
+    Task<Interview.Domain.Entities.Person.PersonRelation> AddRelationAsync(Interview.Domain.Entities.Person.PersonRelation relation);
+    Task<Interview.Domain.Entities.Person.PersonRelation> UpdateRelationAsync(Interview.Domain.Entities.Person.PersonRelation relation);
     Task DeleteRelationAsync(int id);
 }

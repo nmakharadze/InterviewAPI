@@ -5,6 +5,7 @@ using Interview.Infrastructure.Repositories;
 using MediatR;
 using System.Reflection;
 using Interview.Api.Middleware;
+using Interview.Application.Dictionaries.Commands.Create;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +20,7 @@ builder.Services.AddDbContext<Interview.Infrastructure.Data.InterviewDbContext>(
 
 // Add MediatR for CQRS
 builder.Services.AddMediatR(cfg => {
-    cfg.RegisterServicesFromAssembly(typeof(Interview.Application.Commands.Dictionary.CreateDictionaryCommand).Assembly);
+    cfg.RegisterServicesFromAssembly(typeof(CreateDictionaryCommand).Assembly);
 });
 
 // Add Repository Services

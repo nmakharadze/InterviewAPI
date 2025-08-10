@@ -1,6 +1,9 @@
-using Interview.Application.Commands.Dictionary;
-using Interview.Application.DTOs.Dictionary;
-using Interview.Application.Queries.Dictionary;
+using Interview.Application.Dictionaries.Commands.Create;
+using Interview.Application.Dictionaries.Commands.Delete;
+using Interview.Application.Dictionaries.Commands.Update;
+using Interview.Application.Dictionaries.Queries.GetAll;
+using Interview.Application.Dictionaries.Queries.GetDetail;
+using Interview.Application.Dictionaries.Queries.GetDictionaryTable;
 using Interview.Application.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +33,7 @@ public class DictionaryController : ControllerBase
     /// <param name="tableName">ცხრილის დასახელება მაგ: cities, genders, phonetypes, relationtypes</param>
     /// <returns>მოთხოვნილი ცხრილის ჩანაწერების სია</returns>
     [HttpGet("{tableName}")]
-    public async Task<ActionResult<IEnumerable<DictionaryDto>>> GetAll(string tableName)
+    public async Task<ActionResult<IEnumerable<DictionaryListDto>>> GetAll(string tableName)
     {
         await _dictionaryRepository.ValidateDictionaryTableAsync(tableName);
         
@@ -46,7 +49,7 @@ public class DictionaryController : ControllerBase
     /// <param name="id">ჩანაწერის ID</param>
     /// <returns>Dictionary ჩანაწერი</returns>
     [HttpGet("{tableName}/{id}")]
-    public async Task<ActionResult<DictionaryDto>> GetById(string tableName, int id)
+    public async Task<ActionResult<DictionaryDetailDto>> GetById(string tableName, int id)
     {
         await _dictionaryRepository.ValidateDictionaryTableAsync(tableName);
         
@@ -62,7 +65,7 @@ public class DictionaryController : ControllerBase
     /// <param name="dto">შექმნის მონაცემები</param>
     /// <returns>შექმნილი ჩანაწერი</returns>
     [HttpPost("{tableName}")]
-    public async Task<ActionResult<DictionaryDto>> Create(string tableName, [FromBody] CreateDictionaryDto dto)
+    public async Task<ActionResult<CreateDictionaryResultDto>> Create(string tableName, [FromBody] CreateDictionaryDto dto)
     {
         await _dictionaryRepository.ValidateDictionaryTableAsync(tableName);
         
@@ -83,7 +86,7 @@ public class DictionaryController : ControllerBase
     /// <param name="dto">განსაახლებელი მონაცემები</param>
     /// <returns>განახლებული ჩანაწერი</returns>
     [HttpPut("{tableName}/{id}")]
-    public async Task<ActionResult<DictionaryDto>> Update(string tableName, int id, [FromBody] UpdateDictionaryDto dto)
+    public async Task<ActionResult<UpdateDictionaryResultDto>> Update(string tableName, int id, [FromBody] UpdateDictionaryDto dto)
     {
         await _dictionaryRepository.ValidateDictionaryTableAsync(tableName);
         

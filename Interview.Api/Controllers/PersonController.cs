@@ -1,8 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using Interview.Application.DTOs.Person;
-using Interview.Application.Queries.Person;
-using Interview.Application.Commands.Person;
+using Interview.Application.Persons.Queries.GetAll;
+using Interview.Application.Persons.Queries.GetById;
+using Interview.Application.Persons.Queries.GetDetail;
+using Interview.Application.Persons.Queries.SearchPersons;
+using Interview.Application.Persons.Commands.Create;
+using Interview.Application.PersonPhoneNumber.Commands.Create;
+using Interview.Application.PersonRelation.Commands.Create;
+using Interview.Application.Persons.Commands.Update;
+using Interview.Application.Persons.Commands.Delete;
 
 namespace Interview.Api.Controllers;
 
@@ -73,7 +79,7 @@ public class PersonController : ControllerBase
     /// <param name="pageSize">გვერდზე ჩანაწერების რაოდენობა</param>
     /// <returns>ძებნის შედეგები</returns>
     [HttpGet("search")]
-    public async Task<ActionResult<IEnumerable<PersonListDto>>> Search(
+    public async Task<ActionResult<IEnumerable<SearchResultDto>>> Search(
         [FromQuery] string? searchTerm,
         [FromQuery] int? cityId,
         [FromQuery] int? genderId,
@@ -98,7 +104,7 @@ public class PersonController : ControllerBase
     /// <param name="request">ფიზიკური პირის შექმნის მონაცემები</param>
     /// <returns>შექმნილი ფიზიკური პირის ინფორმაცია</returns>
     [HttpPost]
-    public async Task<ActionResult<PersonDto>> Create([FromBody] CreatePersonDto request)
+    public async Task<ActionResult<CreatePersonResultDto>> Create([FromBody] CreatePersonDto request)
     {
         var command = new CreatePersonCommand
         {
@@ -132,7 +138,7 @@ public class PersonController : ControllerBase
     /// <param name="request">განახლების მონაცემები</param>
     /// <returns>განახლებული ფიზიკური პირის ინფორმაცია</returns>
     [HttpPut("{id}")]
-    public async Task<ActionResult<PersonDto>> Update(int id, [FromBody] UpdatePersonDto request)
+    public async Task<ActionResult<UpdatePersonResultDto>> Update(int id, [FromBody] UpdatePersonDto request)
     {
         var command = new UpdatePersonCommand
         {
