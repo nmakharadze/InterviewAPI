@@ -33,7 +33,9 @@ public class GetPersonQueryHandler : IRequestHandler<GetPersonQuery, PersonDto>
             BirthDate = person.BirthDate.Value,
             Gender = person.Gender?.Name ?? string.Empty,
             City = person.City?.Name ?? string.Empty,
-            ImagePath = person.ImagePath
+            ImagePath = person.ImagePath,
+            CreatedAt = person.CreatedAt,
+            UpdatedAt = person.UpdatedAt
         };
     }
 }

@@ -108,6 +108,7 @@ public class PersonController : ControllerBase
             PersonalNumber = request.PersonalNumber,
             BirthDate = request.BirthDate,
             CityId = request.CityId,
+            ImagePath = request.ImagePath,
             PhoneNumbers = request.PhoneNumbers?.Select(pn => new CreatePhoneNumberDto
             {
                 PhoneTypeId = pn.PhoneTypeId,

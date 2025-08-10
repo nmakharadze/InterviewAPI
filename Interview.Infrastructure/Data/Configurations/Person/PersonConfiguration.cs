@@ -15,7 +15,8 @@ namespace Interview.Infrastructure.Data.Configurations.Person
             builder.ToTable("Persons", "Person");
                 
             builder.Property(e => e.ImagePath)
-                .HasMaxLength(500);
+                .HasMaxLength(500)
+                .IsRequired();
                 
             // Value Objects
             builder.Property(e => e.FirstName)

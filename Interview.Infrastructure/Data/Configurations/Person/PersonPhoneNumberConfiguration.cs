@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Interview.Domain.Entities.Person;
 using Interview.Infrastructure.Data.Configurations.Base;
+using Interview.Domain.ValueObjects;
 
 namespace Interview.Infrastructure.Data.Configurations.Person
 {
@@ -13,14 +14,24 @@ namespace Interview.Infrastructure.Data.Configurations.Person
             
             builder.ToTable("PersonPhoneNumbers", "Person");
             
+            // Primary Key
+            builder.HasKey(e => e.Id);
+            
             // Value Objects
-            builder.OwnsOne(e => e.Number, phoneNumber =>
-            {
-                phoneNumber.Property(p => p.Value)
-                    .HasColumnName("Number")
-                    .IsRequired()
-                    .HasMaxLength(50);
-            });
+            builder.Property(e => e.Number)
+                .HasConversion(
+                    v => v.Value,
+                    v => PhoneNumber.Create(v)
+                )
+                .IsRequired()
+                .HasMaxLength(50);
+            
+            // Foreign Keys
+            builder.Property(e => e.PersonId)
+                .IsRequired();
+                
+            builder.Property(e => e.PhoneTypeId)
+                .IsRequired();
             
             // Relationships
             builder.HasOne(e => e.Person)

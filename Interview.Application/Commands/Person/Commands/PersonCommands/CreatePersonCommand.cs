@@ -41,6 +41,11 @@ namespace Interview.Application.Commands.Person
         public int CityId { get; set; }
 
         /// <summary>
+        /// სურათის მისამართი
+        /// </summary>
+        public string ImagePath { get; set; } = string.Empty;
+
+        /// <summary>
         /// ტელეფონის ნომრების სია (პარამეტრი არის აუცილებელი)
         /// </summary>
         public List<CreatePhoneNumberDto> PhoneNumbers { get; set; } = new();
@@ -60,6 +65,7 @@ namespace Interview.Application.Commands.Person
             PersonalNumber = dto.PersonalNumber;
             BirthDate = dto.BirthDate;
             CityId = dto.CityId;
+            ImagePath = dto.ImagePath;
             PhoneNumbers = dto.PhoneNumbers;
             Relations = dto.Relations;
         }

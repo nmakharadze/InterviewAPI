@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
+using Microsoft.EntityFrameworkCore;
 
 namespace Interview.Api.Middleware;
 
@@ -38,9 +39,13 @@ public class GlobalExceptionHandlerMiddleware
         var response = context.Response;
         response.ContentType = "application/json";
 
+        // იღებს ყველა InnerException-ის შეტყობინება
+        var allMessages = GetAllExceptionMessages(exception);
+        
         var errorResponse = new
         {
             error = exception.Message,
+            innerError = allMessages,
             details = _environment.IsDevelopment() ? exception.StackTrace : null,
             timestamp = DateTime.UtcNow
         };
@@ -62,6 +67,20 @@ public class GlobalExceptionHandlerMiddleware
         }
 
         await response.WriteAsJsonAsync(errorResponse);
+    }
+
+    private string GetAllExceptionMessages(Exception exception)
+    {
+        var messages = new List<string>();
+        var currentException = exception;
+
+        while (currentException != null)
+        {
+            messages.Add(currentException.Message);
+            currentException = currentException.InnerException;
+        }
+
+        return string.Join(" -> ", messages);
     }
 }
 

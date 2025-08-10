@@ -28,7 +28,8 @@ public class GetAllPersonsQueryHandler : IRequestHandler<GetAllPersonsQuery, IEn
             FirstName = p.FirstName.Value,
             LastName = p.LastName.Value,
             PersonalNumber = p.PersonalNumber.Value,
-            City = p.City?.Name ?? string.Empty
+            City = p.City?.Name ?? string.Empty,
+            CreatedAt = p.CreatedAt
         });
     }
 }

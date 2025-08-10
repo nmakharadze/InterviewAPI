@@ -51,6 +51,13 @@ namespace Interview.Application.DTOs.Person
         public int CityId { get; set; }
 
         /// <summary>
+        /// სურათის მისამართი
+        /// </summary>
+        [Required(ErrorMessage = "სურათის მისამართი სავალდებულოა")]
+        [StringLength(500, ErrorMessage = "სურათის მისამართი არ უნდა აღემატებოდეს 500 სიმბოლოს")]
+        public string ImagePath { get; set; } = string.Empty;
+
+        /// <summary>
         /// ტელეფონის ნომრების სია (optional)
         /// </summary>
         public List<CreatePhoneNumberDto> PhoneNumbers { get; set; } = new();

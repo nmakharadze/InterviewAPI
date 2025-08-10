@@ -58,7 +58,8 @@ namespace Interview.Application.Commands.Person.Handlers
                 GenderId = request.GenderId,
                 PersonalNumber = personalNumber,
                 BirthDate = birthDate,
-                CityId = request.CityId
+                CityId = request.CityId,
+                ImagePath = request.ImagePath
             };
 
             // ტელეფონის ნომრების დამატება
