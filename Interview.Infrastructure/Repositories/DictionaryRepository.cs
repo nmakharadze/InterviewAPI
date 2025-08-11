@@ -147,8 +147,6 @@ public class DictionaryRepository : IDictionaryRepository
         var typedEntity = Convert.ChangeType(entity, entityType);
         addMethod.Invoke(dbSet, new object[] { typedEntity });
         
-        await _context.SaveChangesAsync();
-        
         return dictionaryEntity;
     }
     
@@ -173,7 +171,6 @@ public class DictionaryRepository : IDictionaryRepository
         }
         
         entity.Name = name;
-        await _context.SaveChangesAsync();
         
         return entity;
     }
@@ -205,8 +202,6 @@ public class DictionaryRepository : IDictionaryRepository
         var entityType = GetEntityTypeByName(tableName.TrimEnd('s'), tableName);
         var typedEntity = Convert.ChangeType(entity, entityType);
         removeMethod.Invoke(dbSet, new object[] { typedEntity });
-        
-        await _context.SaveChangesAsync();
         
         return true;
     }

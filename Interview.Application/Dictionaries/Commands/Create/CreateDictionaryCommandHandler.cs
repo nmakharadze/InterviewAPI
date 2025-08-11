@@ -12,10 +12,12 @@ namespace Interview.Application.Dictionaries.Commands.Create;
 public class CreateDictionaryCommandHandler : IRequestHandler<CreateDictionaryCommand, CreateDictionaryResultDto>
 {
     private readonly IDictionaryRepository _dictionaryRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public CreateDictionaryCommandHandler(IDictionaryRepository dictionaryRepository)
+    public CreateDictionaryCommandHandler(IDictionaryRepository dictionaryRepository, IUnitOfWork unitOfWork)
     {
         _dictionaryRepository = dictionaryRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<CreateDictionaryResultDto> Handle(CreateDictionaryCommand request, CancellationToken cancellationToken)
@@ -31,6 +33,9 @@ public class CreateDictionaryCommandHandler : IRequestHandler<CreateDictionaryCo
 
         // Create dictionary
         var createdDictionary = await _dictionaryRepository.CreateDictionaryAsync(request.DictionaryTableName, request.Name);
+        
+        // Save changes using Unit of Work
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return new CreateDictionaryResultDto
         {

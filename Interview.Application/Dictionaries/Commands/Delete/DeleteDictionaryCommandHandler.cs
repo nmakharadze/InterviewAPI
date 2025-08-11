@@ -11,10 +11,12 @@ namespace Interview.Application.Dictionaries.Commands.Delete;
 public class DeleteDictionaryCommandHandler : IRequestHandler<DeleteDictionaryCommand, bool>
 {
     private readonly IDictionaryRepository _dictionaryRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public DeleteDictionaryCommandHandler(IDictionaryRepository dictionaryRepository)
+    public DeleteDictionaryCommandHandler(IDictionaryRepository dictionaryRepository, IUnitOfWork unitOfWork)
     {
         _dictionaryRepository = dictionaryRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<bool> Handle(DeleteDictionaryCommand request, CancellationToken cancellationToken)
@@ -23,6 +25,11 @@ public class DeleteDictionaryCommandHandler : IRequestHandler<DeleteDictionaryCo
         await _dictionaryRepository.ValidateDictionaryTableAsync(request.DictionaryTableName);
 
         // Delete record from dictionary table
-        return await _dictionaryRepository.DeleteDictionaryAsync(request.DictionaryTableName, request.Id);
+        var result = await _dictionaryRepository.DeleteDictionaryAsync(request.DictionaryTableName, request.Id);
+        
+        // Save changes using Unit of Work
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        
+        return result;
     }
 }

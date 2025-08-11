@@ -13,10 +13,12 @@ namespace Interview.Application.Dictionaries.Commands.Update;
 public class UpdateDictionaryCommandHandler : IRequestHandler<UpdateDictionaryCommand, UpdateDictionaryResultDto>
 {
     private readonly IDictionaryRepository _dictionaryRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public UpdateDictionaryCommandHandler(IDictionaryRepository dictionaryRepository)
+    public UpdateDictionaryCommandHandler(IDictionaryRepository dictionaryRepository, IUnitOfWork unitOfWork)
     {
         _dictionaryRepository = dictionaryRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<UpdateDictionaryResultDto> Handle(UpdateDictionaryCommand request, CancellationToken cancellationToken)
@@ -32,6 +34,9 @@ public class UpdateDictionaryCommandHandler : IRequestHandler<UpdateDictionaryCo
 
         // Update dictionary
         var updatedDictionary = await _dictionaryRepository.UpdateDictionaryAsync(request.DictionaryTableName, request.Id, request.Name);
+        
+        // Save changes using Unit of Work
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return new UpdateDictionaryResultDto
         {
