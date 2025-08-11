@@ -59,7 +59,7 @@ namespace Interview.Application.Persons.Commands.Create
                 PersonalNumber = personalNumber,
                 BirthDate = birthDate,
                 CityId = request.CityId,
-                ImagePath = request.ImagePath
+                ImagePath = request.ImagePath ?? string.Empty
             };
 
             // ტელეფონის ნომრების დამატება

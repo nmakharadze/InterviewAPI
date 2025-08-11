@@ -16,7 +16,7 @@ namespace Interview.Domain.Entities.Person
         public BirthDate BirthDate { get; set; }
         public int CityId { get; set; }
         public City City { get; set; }
-        public string ImagePath { get; set; }
+        public string? ImagePath { get; set; }
         
         // Navigation properties
         public ICollection<PersonPhoneNumber> PhoneNumbers { get; set; }
@@ -26,6 +26,11 @@ namespace Interview.Domain.Entities.Person
         {
             PhoneNumbers = new List<PersonPhoneNumber>();
             Relations = new List<PersonRelation>();
+        }
+        
+        public void UpdateImagePath(string? imagePath)
+        {
+            ImagePath = imagePath ?? string.Empty;
         }
     }
 }

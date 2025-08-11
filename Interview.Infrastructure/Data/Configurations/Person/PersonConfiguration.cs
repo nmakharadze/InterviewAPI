@@ -16,7 +16,7 @@ namespace Interview.Infrastructure.Data.Configurations.Person
                 
             builder.Property(e => e.ImagePath)
                 .HasMaxLength(500)
-                .IsRequired();
+                .IsRequired(false);
                 
             // Value Objects
             builder.Property(e => e.FirstName)

@@ -45,8 +45,16 @@ public class GetPersonDetailQueryHandler : IRequestHandler<GetPersonDetailQuery,
             {
                 Id = r.Id,
                 RelatedPersonId = r.RelatedPersonId,
-                RelatedPersonName = $"{r.RelatedPerson?.FirstName?.Value} {r.RelatedPerson?.LastName?.Value}",
-                RelationType = r.RelationType?.Name ?? string.Empty
+                RelatedPersonName = r.RelatedPerson?.FirstName?.Value ?? string.Empty,
+                RelatedPersonLastName = r.RelatedPerson?.LastName?.Value ?? string.Empty,
+                RelatedPersonPersonalNumber = r.RelatedPerson?.PersonalNumber?.Value ?? string.Empty,
+                RelatedPersonBirthDate = r.RelatedPerson?.BirthDate?.Value ?? DateTime.MinValue,
+                RelatedPersonGender = r.RelatedPerson?.Gender?.Name ?? string.Empty,
+                RelatedPersonCity = r.RelatedPerson?.City?.Name ?? string.Empty,
+                RelatedPersonImagePath = r.RelatedPerson?.ImagePath,
+                RelationType = r.RelationType?.Name ?? string.Empty,
+                CreatedAt = r.CreatedAt,
+                UpdatedAt = r.UpdatedAt
             }).ToList() ?? new List<RelationDto>()
         };
     }

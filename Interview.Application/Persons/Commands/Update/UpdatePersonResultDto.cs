@@ -43,7 +43,7 @@ namespace Interview.Application.Persons.Commands.Update
         public string City { get; set; } = string.Empty;
 
         /// <summary>
-        /// სურათის მისამართი (optional)
+        /// სურათის მისამართი
         /// </summary>
         public string? ImagePath { get; set; }
 

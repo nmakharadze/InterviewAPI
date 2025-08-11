@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Interview.Infrastructure.Data;
 using Interview.Application.Repositories;
 using Interview.Infrastructure.Repositories;
+using Interview.Application.Services;
+using Interview.Infrastructure.Services;
 using MediatR;
 using System.Reflection;
 using Interview.Api.Middleware;
@@ -28,6 +30,9 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 builder.Services.AddScoped<IDictionaryRepository, DictionaryRepository>();
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+// Add Image Services
+builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 
 var app = builder.Build();
 

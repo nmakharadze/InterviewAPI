@@ -43,9 +43,9 @@ namespace Interview.Application.Persons.Commands.Create
         public int CityId { get; set; }
 
         /// <summary>
-        /// სურათის მისამართი
+        /// სურათის მისამართი (optional)
         /// </summary>
-        public string ImagePath { get; set; } = string.Empty;
+        public string? ImagePath { get; set; }
 
         /// <summary>
         /// ტელეფონის ნომრების სია (პარამეტრი არის აუცილებელი)

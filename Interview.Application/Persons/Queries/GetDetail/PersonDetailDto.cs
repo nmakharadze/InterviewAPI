@@ -44,7 +44,7 @@ namespace Interview.Application.Persons.Queries.GetDetail
         public string City { get; set; } = string.Empty;
 
         /// <summary>
-        /// სურათის მისამართი (optional)
+        /// სურათის მისამართი
         /// </summary>
         public string? ImagePath { get; set; }
 

@@ -53,11 +53,9 @@ namespace Interview.Application.Persons.Commands.Create
         public int CityId { get; set; }
 
         /// <summary>
-        /// სურათის მისამართი
+        /// სურათის მისამართი (optional)
         /// </summary>
-        [Required(ErrorMessage = "სურათის მისამართი სავალდებულოა")]
-        [StringLength(500, ErrorMessage = "სურათის მისამართი არ უნდა აღემატებოდეს 500 სიმბოლოს")]
-        public string ImagePath { get; set; } = string.Empty;
+        public string? ImagePath { get; set; }
 
         /// <summary>
         /// ტელეფონის ნომრების სია (optional)
