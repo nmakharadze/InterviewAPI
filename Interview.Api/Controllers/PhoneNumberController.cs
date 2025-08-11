@@ -1,6 +1,6 @@
-using Interview.Application.PersonPhoneNumber.Commands.Create;
-using Interview.Application.PersonPhoneNumber.Commands.Delete;
-using Interview.Application.PersonPhoneNumber.Commands.Update;
+using Interview.Application.Persons.PhoneNumber.Commands.Create;
+using Interview.Application.Persons.PhoneNumber.Commands.Delete;
+using Interview.Application.Persons.PhoneNumber.Commands.Update;
 using Interview.Application.Persons.Queries.GetDetail;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

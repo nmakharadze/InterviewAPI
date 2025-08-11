@@ -1,8 +1,8 @@
+using Interview.Application.Persons.PhoneNumber.Commands.Create;
+using Interview.Application.Persons.Relation.Commands.Create;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Interview.Application.PersonPhoneNumber.Commands.Create;
-using Interview.Application.PersonRelation.Commands.Create;
 
 namespace Interview.Application.Persons.Commands.Create
 {

@@ -67,7 +67,7 @@ namespace Interview.Application.Persons.Commands.Create
             {
                 foreach (var phoneDto in request.PhoneNumbers)
                 {
-                    var phoneNumber = PhoneNumber.Create(phoneDto.Number);
+                    var phoneNumber = Interview.Domain.ValueObjects.PhoneNumber.Create(phoneDto.Number);
                     var personPhone = new Interview.Domain.Entities.Person.PersonPhoneNumber
                     {
                         PhoneTypeId = phoneDto.PhoneTypeId,

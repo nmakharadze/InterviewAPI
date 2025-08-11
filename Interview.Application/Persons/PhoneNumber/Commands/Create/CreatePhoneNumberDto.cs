@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Interview.Application.PersonPhoneNumber.Commands.Create
+namespace Interview.Application.Persons.PhoneNumber.Commands.Create
 {
     /// <summary>
     /// DTO ტელეფონის ნომრის შექმნისთვის

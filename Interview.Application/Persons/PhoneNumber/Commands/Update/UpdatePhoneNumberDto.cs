@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Interview.Application.PersonPhoneNumber.Commands.Update
+namespace Interview.Application.Persons.PhoneNumber.Commands.Update
 {
     /// <summary>
     /// DTO ტელეფონის ნომრის განახლებისთვის

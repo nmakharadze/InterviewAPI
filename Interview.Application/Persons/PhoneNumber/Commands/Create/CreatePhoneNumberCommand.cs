@@ -1,8 +1,7 @@
 using System;
-using Interview.Application.PersonPhoneNumber.Commands.Create;
 using MediatR;
 
-namespace Interview.Application.PersonPhoneNumber.Commands.Create
+namespace Interview.Application.Persons.PhoneNumber.Commands.Create
 {
     /// <summary>
     /// ტელეფონის ნომრის დამატება არსებულ ფიზიკურ პირზე

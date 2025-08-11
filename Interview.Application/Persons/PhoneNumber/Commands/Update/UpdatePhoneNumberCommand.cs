@@ -1,8 +1,7 @@
 using System;
-using Interview.Application.PersonPhoneNumber.Commands.Update;
 using MediatR;
 
-namespace Interview.Application.PersonPhoneNumber.Commands.Update
+namespace Interview.Application.Persons.PhoneNumber.Commands.Update
 {
     /// <summary>
     /// ტელეფონის ნომრის განახლება

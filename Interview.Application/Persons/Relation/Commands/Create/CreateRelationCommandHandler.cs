@@ -6,7 +6,7 @@ using Interview.Domain.Entities.Dictionary;
 using Interview.Application.Repositories;
 using MediatR;
 
-namespace Interview.Application.PersonRelation.Commands.Create
+namespace Interview.Application.Persons.Relation.Commands.Create
 {
     /// <summary>
     /// Handler კავშირის დამატებისთვის

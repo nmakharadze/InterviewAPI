@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Interview.Application.PersonRelation.Commands.Create
+namespace Interview.Application.Persons.Relation.Commands.Create
 {
     /// <summary>
     /// DTO კავშირის შექმნისთვის

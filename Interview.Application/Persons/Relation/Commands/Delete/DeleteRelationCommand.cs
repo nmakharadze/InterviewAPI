@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace Interview.Application.PersonRelation.Commands.Delete
+namespace Interview.Application.Persons.Relation.Commands.Delete
 {
     /// <summary>
     /// კავშირის წაშლა

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Interview.Application.PersonRelation.Commands.Update
+namespace Interview.Application.Persons.Relation.Commands.Update
 {
     /// <summary>
     /// DTO კავშირის განახლებისთვის

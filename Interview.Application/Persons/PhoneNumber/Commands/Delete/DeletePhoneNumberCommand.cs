@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace Interview.Application.PersonPhoneNumber.Commands.Delete
+namespace Interview.Application.Persons.PhoneNumber.Commands.Delete
 {
     /// <summary>
     /// ტელეფონის ნომრის წაშლა

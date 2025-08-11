@@ -1,13 +1,12 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Interview.Application.PersonRelation.Commands.Update;
 using Interview.Domain.Entities.Person;
 using Interview.Domain.Entities.Dictionary;
 using Interview.Application.Repositories;
 using MediatR;
 
-namespace Interview.Application.PersonRelation.Commands.Update
+namespace Interview.Application.Persons.Relation.Commands.Update
 {
     /// <summary>
     /// Handler კავშირის განახლებისთვის

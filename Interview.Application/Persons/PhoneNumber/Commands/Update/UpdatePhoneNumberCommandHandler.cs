@@ -1,14 +1,13 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Interview.Application.PersonPhoneNumber.Commands.Update;
 using Interview.Domain.Entities.Person;
 using Interview.Domain.Entities.Dictionary;
 using Interview.Domain.ValueObjects;
 using Interview.Application.Repositories;
 using MediatR;
 
-namespace Interview.Application.PersonPhoneNumber.Commands.Update
+namespace Interview.Application.Persons.PhoneNumber.Commands.Update
 {
     /// <summary>
     /// Handler ტელეფონის ნომრის განახლებისთვის
@@ -52,7 +51,7 @@ namespace Interview.Application.PersonPhoneNumber.Commands.Update
             // Value Object-ის შექმნა და განახლება (ვალიდაცია ხდება აქ)
             if (!string.IsNullOrWhiteSpace(request.Number))
             {
-                phoneNumber.Number = PhoneNumber.Create(request.Number);
+                phoneNumber.Number = Interview.Domain.ValueObjects.PhoneNumber.Create(request.Number);
             }
 
             // ტელეფონის ნომრის განახლება ბაზაში

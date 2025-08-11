@@ -4,7 +4,7 @@ using Interview.Domain.Entities.Person;
 using Interview.Application.Repositories;
 using MediatR;
 
-namespace Interview.Application.PersonPhoneNumber.Commands.Delete
+namespace Interview.Application.Persons.PhoneNumber.Commands.Delete
 {
     /// <summary>
     /// Handler ტელეფონის ნომრის წაშლისთვის

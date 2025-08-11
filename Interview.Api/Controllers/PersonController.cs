@@ -5,10 +5,10 @@ using Interview.Application.Persons.Queries.GetById;
 using Interview.Application.Persons.Queries.GetDetail;
 using Interview.Application.Persons.Queries.SearchPersons;
 using Interview.Application.Persons.Commands.Create;
-using Interview.Application.PersonPhoneNumber.Commands.Create;
-using Interview.Application.PersonRelation.Commands.Create;
 using Interview.Application.Persons.Commands.Update;
 using Interview.Application.Persons.Commands.Delete;
+using Interview.Application.Persons.PhoneNumber.Commands.Create;
+using Interview.Application.Persons.Relation.Commands.Create;
 
 namespace Interview.Api.Controllers;
 

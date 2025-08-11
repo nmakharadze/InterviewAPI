@@ -1,14 +1,13 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Interview.Application.PersonPhoneNumber.Commands.Create;
 using Interview.Domain.Entities.Person;
 using Interview.Domain.Entities.Dictionary;
 using Interview.Domain.ValueObjects;
 using Interview.Application.Repositories;
 using MediatR;
 
-namespace Interview.Application.PersonPhoneNumber.Commands.Create
+namespace Interview.Application.Persons.PhoneNumber.Commands.Create
 {
     /// <summary>
     /// Handler ტელეფონის ნომრის დამატებისთვის
@@ -42,10 +41,10 @@ namespace Interview.Application.PersonPhoneNumber.Commands.Create
                 throw new ArgumentException($"ტელეფონის ნომრის ტიპი ID {request.PhoneTypeId} არ არსებობს");
 
             // ტელეფონის ნომრის ვალიდაცია
-            var phoneNumber = PhoneNumber.Create(request.Number);
+            var phoneNumber = Interview.Domain.ValueObjects.PhoneNumber.Create(request.Number);
 
             // ტელეფონის ნომრის შექმნა
-            var personPhone = new Interview.Domain.Entities.Person.PersonPhoneNumber
+            var personPhone = new Domain.Entities.Person.PersonPhoneNumber
             {
                 PersonId = request.PersonId,
                 PhoneTypeId = request.PhoneTypeId,

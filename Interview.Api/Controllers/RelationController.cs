@@ -1,7 +1,7 @@
-using Interview.Application.PersonRelation.Commands.Create;
-using Interview.Application.PersonRelation.Commands.Delete;
-using Interview.Application.PersonRelation.Commands.Update;
 using Interview.Application.Persons.Queries.GetDetail;
+using Interview.Application.Persons.Relation.Commands.Create;
+using Interview.Application.Persons.Relation.Commands.Delete;
+using Interview.Application.Persons.Relation.Commands.Update;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

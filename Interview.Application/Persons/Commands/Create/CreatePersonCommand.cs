@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Interview.Application.Persons.Commands.Create;
-using Interview.Application.PersonPhoneNumber.Commands.Create;
-using Interview.Application.PersonRelation.Commands.Create;
+using Interview.Application.Persons.PhoneNumber.Commands.Create;
+using Interview.Application.Persons.Relation.Commands.Create;
 using MediatR;
 
 namespace Interview.Application.Persons.Commands.Create

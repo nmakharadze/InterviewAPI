@@ -1,8 +1,7 @@
 using System;
-using Interview.Application.PersonRelation.Commands.Create;
 using MediatR;
 
-namespace Interview.Application.PersonRelation.Commands.Create
+namespace Interview.Application.Persons.Relation.Commands.Create
 {
     /// <summary>
     /// კავშირის დამატება

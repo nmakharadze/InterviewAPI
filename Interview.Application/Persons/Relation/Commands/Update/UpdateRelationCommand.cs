@@ -1,8 +1,7 @@
 using System;
-using Interview.Application.PersonRelation.Commands.Update;
 using MediatR;
 
-namespace Interview.Application.PersonRelation.Commands.Update
+namespace Interview.Application.Persons.Relation.Commands.Update
 {
     /// <summary>
     /// კავშირის განახლება
