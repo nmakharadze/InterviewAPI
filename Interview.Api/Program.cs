@@ -7,6 +7,7 @@ using Interview.Infrastructure.Services;
 using MediatR;
 using System.Reflection;
 using Interview.Api.Middleware;
+using Interview.Api.Extensions;
 using Interview.Application.Dictionaries.Commands.Create;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,6 +35,9 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 // Add Image Services
 builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 
+// Add Localization Services
+builder.Services.AddCustomLocalization();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -44,6 +48,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Custom localization middleware
+app.UseCustomLocalization();
 
 // Global exception handling middleware
 app.UseGlobalExceptionHandler();

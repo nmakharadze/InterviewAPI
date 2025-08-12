@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="PersonNotFound" value="Person not found" />
+  <data name="InvalidInput" value="Invalid input" />
+  <data name="ValidationError" value="Validation error" />
+  <data name="DatabaseError" value="Database error" />
+  <data name="FileUploadError" value="File upload error" />
+  <data name="FileNotFound" value="File not found" />
+  <data name="Unauthorized" value="Unauthorized" />
+  <data name="InternalServerError" value="Internal server error" />
+  <data name="CurrentCulture" value="Current culture: {0}" />
+  <data name="LocalizedMessage" value="This is a localized message" />
+  <data name="TestErrorMessage" value="This is a test error message" />
+  <data name="WelcomeMessage" value="Welcome" />
+  <data name="OperationSuccessful" value="Operation completed successfully" />
+  <data name="OperationFailed" value="Operation failed" />
+  <data name="DataSaved" value="Data saved successfully" />
+  <data name="DataDeleted" value="Data deleted successfully" />
+  <data name="DataUpdated" value="Data updated successfully" />
+</root>

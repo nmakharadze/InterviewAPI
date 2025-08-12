@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="PersonNotFound" value="ფიზიკური პირი ვერ მოიძებნა" />
+  <data name="InvalidInput" value="არასწორი შეყვანა" />
+  <data name="ValidationError" value="ვალიდაციის შეცდომა" />
+  <data name="DatabaseError" value="მონაცემთა ბაზის შეცდომა" />
+  <data name="FileUploadError" value="ფაილის ატვირთვის შეცდომა" />
+  <data name="FileNotFound" value="ფაილი ვერ მოიძებნა" />
+  <data name="Unauthorized" value="არაავტორიზებული" />
+  <data name="InternalServerError" value="სერვერის შიდა შეცდომა" />
+  <data name="CurrentCulture" value="მიმდინარე კულტურა: {0}" />
+  <data name="LocalizedMessage" value="ეს არის ლოკალიზებული მესიჯი" />
+  <data name="TestErrorMessage" value="ეს არის ტესტის შეცდომის მესიჯი" />
+  <data name="WelcomeMessage" value="კეთილი იყოს თქვენი მობრძანება" />
+  <data name="OperationSuccessful" value="ოპერაცია წარმატებით შესრულდა" />
+  <data name="OperationFailed" value="ოპერაცია ვერ შესრულდა" />
+  <data name="DataSaved" value="მონაცემები წარმატებით შენახულია" />
+  <data name="DataDeleted" value="მონაცემები წარმატებით წაშლილია" />
+  <data name="DataUpdated" value="მონაცემები წარმატებით განახლებულია" />
+</root>

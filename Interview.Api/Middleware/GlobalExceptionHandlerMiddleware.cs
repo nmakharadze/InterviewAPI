@@ -1,6 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
+using Interview.Application.Services;
+using Microsoft.Extensions.Localization;
+using Interview.Api.Localization.Resources;
 
 namespace Interview.Api.Middleware;
 
@@ -14,7 +17,10 @@ public class GlobalExceptionHandlerMiddleware
     private readonly ILogger<GlobalExceptionHandlerMiddleware> _logger;
     private readonly IWebHostEnvironment _environment;
 
-    public GlobalExceptionHandlerMiddleware(RequestDelegate next, ILogger<GlobalExceptionHandlerMiddleware> logger, IWebHostEnvironment environment)
+    public GlobalExceptionHandlerMiddleware(
+        RequestDelegate next, 
+        ILogger<GlobalExceptionHandlerMiddleware> logger, 
+        IWebHostEnvironment environment)
     {
         _next = next;
         _logger = logger;
@@ -44,7 +50,7 @@ public class GlobalExceptionHandlerMiddleware
         
         var errorResponse = new
         {
-            error = exception.Message,
+            error = GetLocalizedErrorMessage(context, exception),
             innerError = allMessages,
             details = _environment.IsDevelopment() ? exception.StackTrace : null,
             timestamp = DateTime.UtcNow
@@ -67,6 +73,27 @@ public class GlobalExceptionHandlerMiddleware
         }
 
         await response.WriteAsJsonAsync(errorResponse);
+    }
+
+    private string GetLocalizedErrorMessage(HttpContext context, Exception exception)
+    {
+        var localizer = context.RequestServices.GetService<IStringLocalizer<SharedResource>>();
+        
+        if (localizer == null)
+        {
+            return exception.Message;
+        }
+
+        return exception switch
+        {
+            ArgumentException => localizer["InvalidInput"],
+            InvalidOperationException => localizer["ValidationError"],
+            ValidationException => localizer["ValidationError"],
+            DbUpdateException => localizer["DatabaseError"],
+            UnauthorizedAccessException => localizer["Unauthorized"],
+            FileNotFoundException => localizer["FileNotFound"],
+            _ => localizer["InternalServerError"]
+        };
     }
 
     private string GetAllExceptionMessages(Exception exception)
