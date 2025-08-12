@@ -5,6 +5,7 @@ using Interview.Domain.Entities.Person;
 using Interview.Domain.Entities.Dictionary;
 using Interview.Domain.ValueObjects;
 using Interview.Application.Repositories;
+using Interview.Application.Repositories.Person;
 using MediatR;
 
 namespace Interview.Application.Persons.PhoneNumber.Commands.Create
@@ -52,7 +53,7 @@ namespace Interview.Application.Persons.PhoneNumber.Commands.Create
             };
 
             // ტელეფონის ნომრის დამატება
-            await _personRepository.AddPhoneNumberAsync(personPhone);
+            await _personRepository.Phones.AddAsync(personPhone);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             return personPhone.Id;

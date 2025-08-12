@@ -7,6 +7,7 @@ using Interview.Domain.Entities.Person;
 using Interview.Domain.Entities.Dictionary;
 using Interview.Domain.ValueObjects;
 using Interview.Application.Repositories;
+using Interview.Application.Repositories.Person;
 using MediatR;
 
 namespace Interview.Application.Persons.Commands.Create

@@ -4,6 +4,8 @@ using Interview.Application.Repositories;
 using Interview.Infrastructure.Repositories;
 using Interview.Application.Services;
 using Interview.Infrastructure.Services;
+using Interview.Application.Repositories.Person;
+using Interview.Infrastructure.Repositories.Person;
 using MediatR;
 using System.Reflection;
 using Interview.Api.Middleware;
@@ -56,6 +58,12 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 builder.Services.AddScoped<IDictionaryRepository, DictionaryRepository>();
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+// Add Specialized Person Repository Services (optional - for direct injection)
+builder.Services.AddScoped<IPersonSearchRepository, PersonSearchRepository>();
+builder.Services.AddScoped<IPersonPhoneRepository, PersonPhoneRepository>();
+builder.Services.AddScoped<IPersonRelationRepository, PersonRelationRepository>();
+builder.Services.AddScoped<IPersonReportRepository, PersonReportRepository>();
 
 // Add Image Services
 builder.Services.AddScoped<IFileStorageService, FileStorageService>();

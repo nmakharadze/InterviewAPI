@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Interview.Domain.Entities.Person;
 using Interview.Domain.Entities.Dictionary;
 using Interview.Application.Repositories;
+using Interview.Application.Repositories.Person;
 using MediatR;
 
 namespace Interview.Application.Persons.Relation.Commands.Create
@@ -57,7 +58,7 @@ namespace Interview.Application.Persons.Relation.Commands.Create
             };
 
             // კავშირის დამატება
-            await _personRepository.AddRelationAsync(personRelation);
+            await _personRepository.Relations.AddAsync(personRelation);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             return personRelation.Id;

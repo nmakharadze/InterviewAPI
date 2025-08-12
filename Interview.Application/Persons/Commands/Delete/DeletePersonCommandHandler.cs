@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Interview.Domain.Entities.Person;
 using Interview.Application.Repositories;
+using Interview.Application.Repositories.Person;
 using MediatR;
 
 namespace Interview.Application.Persons.Commands.Delete

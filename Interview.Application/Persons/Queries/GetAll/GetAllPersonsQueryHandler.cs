@@ -1,6 +1,7 @@
 using Interview.Application.Persons.Queries.GetAll;
 using Interview.Application.Persons.Queries;
 using Interview.Application.Repositories;
+using Interview.Application.Repositories.Person;
 using MediatR;
 
 namespace Interview.Application.Persons.Queries.GetAll;

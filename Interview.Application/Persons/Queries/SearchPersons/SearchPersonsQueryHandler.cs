@@ -1,6 +1,7 @@
 using Interview.Application.Persons.Queries.SearchPersons;
 using Interview.Application.Persons.Queries;
 using Interview.Application.Repositories;
+using Interview.Application.Repositories.Person;
 using MediatR;
 
 namespace Interview.Application.Persons.Queries.SearchPersons;
@@ -20,7 +21,7 @@ public class SearchPersonsQueryHandler : IRequestHandler<SearchPersonsQuery, IEn
 
     public async Task<IEnumerable<SearchResultDto>> Handle(SearchPersonsQuery request, CancellationToken cancellationToken)
     {
-        var persons = await _personRepository.SearchAsync(
+        var persons = await _personRepository.Search.SearchAsync(
             request.SearchTerm, 
             request.CityId, 
             request.GenderId, 

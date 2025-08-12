@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Interview.Domain.Entities.Person;
 using Interview.Domain.Entities.Dictionary;
 using Interview.Application.Repositories;
+using Interview.Application.Repositories.Person;
 using MediatR;
 
 namespace Interview.Application.Persons.Relation.Commands.Update
@@ -30,7 +31,7 @@ namespace Interview.Application.Persons.Relation.Commands.Update
         public async Task<bool> Handle(UpdateRelationCommand request, CancellationToken cancellationToken)
         {
             // კავშირის პოვნა
-            var relation = await _personRepository.GetRelationByIdAsync(request.Id);
+            var relation = await _personRepository.Relations.GetByIdAsync(request.Id);
             if (relation == null)
             {
                 return false;

@@ -2,6 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Interview.Domain.Entities.Person;
 using Interview.Application.Repositories;
+using Interview.Application.Repositories.Person;
 using MediatR;
 
 namespace Interview.Application.Persons.PhoneNumber.Commands.Delete
@@ -23,14 +24,14 @@ namespace Interview.Application.Persons.PhoneNumber.Commands.Delete
         public async Task<bool> Handle(DeletePhoneNumberCommand request, CancellationToken cancellationToken)
         {
             // ტელეფონის ნომრის პოვნა
-            var phoneNumber = await _personRepository.GetPhoneNumberByIdAsync(request.Id);
+            var phoneNumber = await _personRepository.Phones.GetByIdAsync(request.Id);
             if (phoneNumber == null)
             {
                 return false;
             }
 
             // ტელეფონის ნომრის წაშლა
-            await _personRepository.DeletePhoneNumberAsync(request.Id);
+            await _personRepository.Phones.DeleteAsync(request.Id);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             return true;

@@ -1,5 +1,6 @@
 using MediatR;
 using Interview.Application.Repositories;
+using Interview.Application.Repositories.Person;
 
 namespace Interview.Application.Persons.Queries.AdvancedSearch;
 
@@ -18,7 +19,7 @@ public class AdvancedSearchPersonsQueryHandler : IRequestHandler<AdvancedSearchP
 
     public async Task<IEnumerable<AdvancedSearchResultDto>> Handle(AdvancedSearchPersonsQuery request, CancellationToken cancellationToken)
     {
-        var persons = await _personRepository.AdvancedSearchAsync(request.Filters);
+        var persons = await _personRepository.Search.AdvancedSearchAsync(request.Filters);
         
         return persons.Select(p => new AdvancedSearchResultDto
         {

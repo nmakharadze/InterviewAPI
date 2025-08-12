@@ -5,6 +5,7 @@ using Interview.Domain.Entities.Person;
 using Interview.Domain.Entities.Dictionary;
 using Interview.Domain.ValueObjects;
 using Interview.Application.Repositories;
+using Interview.Application.Repositories.Person;
 using MediatR;
 
 namespace Interview.Application.Persons.PhoneNumber.Commands.Update
@@ -31,7 +32,7 @@ namespace Interview.Application.Persons.PhoneNumber.Commands.Update
         public async Task<bool> Handle(UpdatePhoneNumberCommand request, CancellationToken cancellationToken)
         {
             // ტელეფონის ნომრის პოვნა
-            var phoneNumber = await _personRepository.GetPhoneNumberByIdAsync(request.Id);
+            var phoneNumber = await _personRepository.Phones.GetByIdAsync(request.Id);
             if (phoneNumber == null)
             {
                 return false;

@@ -1,5 +1,6 @@
 using MediatR;
 using Interview.Application.Repositories;
+using Interview.Application.Repositories.Person;
 using Interview.Application.Services;
 
 namespace Interview.Application.Persons.Image.Commands.DeleteImage

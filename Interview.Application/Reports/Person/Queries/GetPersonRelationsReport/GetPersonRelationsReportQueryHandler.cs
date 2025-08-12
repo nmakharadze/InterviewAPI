@@ -1,5 +1,6 @@
 using MediatR;
 using Interview.Application.Repositories;
+using Interview.Application.Repositories.Person;
 
 namespace Interview.Application.Reports.Person.Queries.GetPersonRelationsReport;
 
@@ -17,7 +18,7 @@ public class GetPersonRelationsReportQueryHandler : IRequestHandler<GetPersonRel
 
     public async Task<PersonReportDto> Handle(GetPersonRelationsReportQuery request, CancellationToken cancellationToken)
     {
-        var report = await _personRepository.GetPersonRelationsReportAsync(
+        var report = await _personRepository.Reports.GetPersonRelationsReportAsync(
             request.PersonId, 
             request.RelationTypeId, 
             cancellationToken);
