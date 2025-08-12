@@ -1,10 +1,11 @@
 using Interview.Domain.Entities.Person;
+using Interview.Application.Reports.Person.Queries.GetPersonRelationsReport;
 
 namespace Interview.Application.Repositories;
 
 /// <summary>
 /// ფიზიკური პირების Repository ინტერფეისი
-/// მოიცავს ყველა CRUD ოპერაციას ფიზიკური პირებისთვის
+/// მოიცავს ფიზიკურ პირთან დაკავშირებულ ყველა CRUD და სხვა საჭირო ოპერაციებს
 /// </summary>
 public interface IPersonRepository : IGenericRepository<Person>
 {
@@ -31,4 +32,7 @@ public interface IPersonRepository : IGenericRepository<Person>
     Task<Interview.Domain.Entities.Person.PersonRelation> AddRelationAsync(Interview.Domain.Entities.Person.PersonRelation relation);
     Task<Interview.Domain.Entities.Person.PersonRelation> UpdateRelationAsync(Interview.Domain.Entities.Person.PersonRelation relation);
     Task DeleteRelationAsync(int id);
+    
+    // Report operations
+    Task<PersonReportDto> GetPersonRelationsReportAsync(int? personId = null, int? relationTypeId = null, CancellationToken cancellationToken = default);
 }
