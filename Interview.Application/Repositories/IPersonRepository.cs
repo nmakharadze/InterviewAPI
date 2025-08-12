@@ -1,5 +1,6 @@
 using Interview.Domain.Entities.Person;
 using Interview.Application.Reports.Person.Queries.GetPersonRelationsReport;
+using Interview.Application.Persons.Queries.AdvancedSearch;
 
 namespace Interview.Application.Repositories;
 
@@ -18,6 +19,7 @@ public interface IPersonRepository : IGenericRepository<Person>
     
     // Search operations
     Task<IEnumerable<Person>> SearchAsync(string? searchTerm, int? cityId, int? genderId, int page, int pageSize);
+    Task<IEnumerable<Person>> AdvancedSearchAsync(AdvancedSearchFiltersDto filters);
     
     // Phone Number operations
     Task<Interview.Domain.Entities.Person.PersonPhoneNumber?> GetPhoneNumberByIdAsync(int id);

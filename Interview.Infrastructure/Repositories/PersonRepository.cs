@@ -3,6 +3,8 @@ using Interview.Application.Repositories;
 using Interview.Domain.Entities.Person;
 using Interview.Infrastructure.Data;
 using Interview.Application.Reports.Person.Queries.GetPersonRelationsReport;
+using Interview.Application.Persons.Queries.AdvancedSearch;
+
 
 namespace Interview.Infrastructure.Repositories;
 
@@ -97,37 +99,188 @@ public class PersonRepository : GenericRepository<Person>, IPersonRepository
     // ძებნის ოპერაციები
     public async Task<IEnumerable<Person>> SearchAsync(string? searchTerm, int? cityId, int? genderId, int page, int pageSize)
     {
-        var query = _context.Persons
-            .Include(p => p.City)
-            .AsQueryable();
-
-        // ძებნის ფილტრის დამატება
+        // Raw SQL Query - ყველაზე მარტივი და ეფექტური გადაწყვეტა Value Objects-თან
+        var sql = @"
+            SELECT p.* 
+            FROM [Person].[Persons] p
+            WHERE 1=1";
+        
+        var parameters = new List<object>();
+        var parameterIndex = 0;
+        
         if (!string.IsNullOrWhiteSpace(searchTerm))
         {
-            searchTerm = searchTerm.ToLower();
-            query = query.Where(p => 
-                p.FirstName.Value.ToLower().Contains(searchTerm) ||
-                p.LastName.Value.ToLower().Contains(searchTerm) ||
-                p.PersonalNumber.Value.Contains(searchTerm));
+            sql += $" AND (LOWER(p.FirstName) LIKE {{{parameterIndex}}} OR LOWER(p.LastName) LIKE {{{parameterIndex}}} OR p.PersonalNumber LIKE {{{parameterIndex}}})";
+            parameters.Add($"%{searchTerm.ToLower()}%");
+            parameterIndex++;
         }
-
-        // ქალაქის ფილტრის დამატება
+        
         if (cityId.HasValue)
         {
-            query = query.Where(p => p.CityId == cityId.Value);
+            sql += $" AND p.CityId = {{{parameterIndex}}}";
+            parameters.Add(cityId.Value);
+            parameterIndex++;
         }
-
-        // სქესის ფილტრის დამატება
+        
         if (genderId.HasValue)
         {
-            query = query.Where(p => p.GenderId == genderId.Value);
+            sql += $" AND p.GenderId = {{{parameterIndex}}}";
+            parameters.Add(genderId.Value);
+            parameterIndex++;
         }
+        
+        sql += " ORDER BY p.FirstName, p.LastName";
+        sql += $" OFFSET {(page - 1) * pageSize} ROWS FETCH NEXT {pageSize} ROWS ONLY";
+        
+        return await _context.Persons
+            .FromSqlRaw(sql, parameters.ToArray())
+            .Include(p => p.City)
+            .ToListAsync();
+    }
 
-        return await query
-            .OrderBy(p => p.FirstName)
-            .ThenBy(p => p.LastName)
-            .Skip((page - 1) * pageSize)
-            .Take(pageSize)
+    public async Task<IEnumerable<Person>> AdvancedSearchAsync(AdvancedSearchFiltersDto filters)
+    {
+        // Raw SQL Query დეტალური ძებნისთვის
+        var sql = @"
+            SELECT p.* 
+            FROM [Person].[Persons] p
+            WHERE 1=1";
+        
+        var parameters = new List<object>();
+        var parameterIndex = 0;
+        
+        // ძებნის ტერმინი (სახელი, გვარი, პირადი ნომერი)
+        if (!string.IsNullOrWhiteSpace(filters.SearchTerm))
+        {
+            sql += $" AND (LOWER(p.FirstName) LIKE {{{parameterIndex}}} OR LOWER(p.LastName) LIKE {{{parameterIndex}}} OR p.PersonalNumber LIKE {{{parameterIndex}}})";
+            parameters.Add($"%{filters.SearchTerm.ToLower()}%");
+            parameterIndex++;
+        }
+        
+        // სახელი
+        if (!string.IsNullOrWhiteSpace(filters.FirstName))
+        {
+            sql += $" AND LOWER(p.FirstName) LIKE {{{parameterIndex}}}";
+            parameters.Add($"%{filters.FirstName.ToLower()}%");
+            parameterIndex++;
+        }
+        
+        // გვარი
+        if (!string.IsNullOrWhiteSpace(filters.LastName))
+        {
+            sql += $" AND LOWER(p.LastName) LIKE {{{parameterIndex}}}";
+            parameters.Add($"%{filters.LastName.ToLower()}%");
+            parameterIndex++;
+        }
+        
+        // პირადი ნომერი
+        if (!string.IsNullOrWhiteSpace(filters.PersonalNumber))
+        {
+            sql += $" AND p.PersonalNumber LIKE {{{parameterIndex}}}";
+            parameters.Add($"%{filters.PersonalNumber}%");
+            parameterIndex++;
+        }
+        
+        // დაბადების თარიღი (დიაპაზონი)
+        if (filters.BirthDateFrom.HasValue)
+        {
+            sql += $" AND p.BirthDate >= {{{parameterIndex}}}";
+            parameters.Add(filters.BirthDateFrom.Value);
+            parameterIndex++;
+        }
+        
+        if (filters.BirthDateTo.HasValue)
+        {
+            sql += $" AND p.BirthDate <= {{{parameterIndex}}}";
+            parameters.Add(filters.BirthDateTo.Value);
+            parameterIndex++;
+        }
+        
+        // ქალაქი
+        if (filters.CityId.HasValue)
+        {
+            sql += $" AND p.CityId = {{{parameterIndex}}}";
+            parameters.Add(filters.CityId.Value);
+            parameterIndex++;
+        }
+        
+        // სქესი
+        if (filters.GenderId.HasValue)
+        {
+            sql += $" AND p.GenderId = {{{parameterIndex}}}";
+            parameters.Add(filters.GenderId.Value);
+            parameterIndex++;
+        }
+        
+        // სურათის ფილტრი
+        if (filters.HasImage.HasValue)
+        {
+            if (filters.HasImage.Value)
+                sql += $" AND p.ImagePath IS NOT NULL AND p.ImagePath != ''";
+            else
+                sql += $" AND (p.ImagePath IS NULL OR p.ImagePath = '')";
+        }
+        
+        // ტელეფონის ნომრის ფილტრი
+        if (!string.IsNullOrWhiteSpace(filters.PhoneNumber))
+        {
+            sql += $" AND EXISTS (SELECT 1 FROM [Person].[PersonPhoneNumbers] pn WHERE pn.PersonId = p.Id AND pn.Number LIKE {{{parameterIndex}}})";
+            parameters.Add($"%{filters.PhoneNumber}%");
+            parameterIndex++;
+        }
+        
+        // ტელეფონის ტიპის ფილტრი
+        if (filters.PhoneTypeId.HasValue)
+        {
+            sql += $" AND EXISTS (SELECT 1 FROM [Person].[PersonPhoneNumbers] pn WHERE pn.PersonId = p.Id AND pn.PhoneTypeId = {{{parameterIndex}}})";
+            parameters.Add(filters.PhoneTypeId.Value);
+            parameterIndex++;
+        }
+        
+        // ურთიერთობის ტიპის ფილტრი
+        if (filters.RelationTypeId.HasValue)
+        {
+            sql += $" AND EXISTS (SELECT 1 FROM [Person].[PersonRelations] pr WHERE pr.PersonId = p.Id AND pr.RelationTypeId = {{{parameterIndex}}})";
+            parameters.Add(filters.RelationTypeId.Value);
+            parameterIndex++;
+        }
+        
+        // შექმნის თარიღი (დიაპაზონი)
+        if (filters.CreatedFrom.HasValue)
+        {
+            sql += $" AND p.CreatedAt >= {{{parameterIndex}}}";
+            parameters.Add(filters.CreatedFrom.Value);
+            parameterIndex++;
+        }
+        
+        if (filters.CreatedTo.HasValue)
+        {
+            sql += $" AND p.CreatedAt <= {{{parameterIndex}}}";
+            parameters.Add(filters.CreatedTo.Value);
+            parameterIndex++;
+        }
+        
+        // განახლების თარიღი (დიაპაზონი)
+        if (filters.UpdatedFrom.HasValue)
+        {
+            sql += $" AND p.UpdatedAt >= {{{parameterIndex}}}";
+            parameters.Add(filters.UpdatedFrom.Value);
+            parameterIndex++;
+        }
+        
+        if (filters.UpdatedTo.HasValue)
+        {
+            sql += $" AND p.UpdatedAt <= {{{parameterIndex}}}";
+            parameters.Add(filters.UpdatedTo.Value);
+            parameterIndex++;
+        }
+        
+        sql += " ORDER BY p.FirstName, p.LastName";
+        sql += $" OFFSET {(filters.Page - 1) * filters.PageSize} ROWS FETCH NEXT {filters.PageSize} ROWS ONLY";
+        
+        return await _context.Persons
+            .FromSqlRaw(sql, parameters.ToArray())
+            .Include(p => p.City)
             .ToListAsync();
     }
 

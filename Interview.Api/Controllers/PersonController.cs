@@ -4,6 +4,7 @@ using Interview.Application.Persons.Queries.GetAll;
 using Interview.Application.Persons.Queries.GetById;
 using Interview.Application.Persons.Queries.GetDetail;
 using Interview.Application.Persons.Queries.SearchPersons;
+using Interview.Application.Persons.Queries.AdvancedSearch;
 using Interview.Application.Persons.Commands.Create;
 using Interview.Application.Persons.Commands.Update;
 using Interview.Application.Persons.Commands.Delete;
@@ -94,6 +95,19 @@ public class PersonController : ControllerBase
             Page = page,
             PageSize = pageSize
         };
+        var result = await _mediator.Send(query);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// ფიზიკური პირების დეტალური ძებნა (ყველა ველის მიხედვით)
+    /// </summary>
+    /// <param name="filters">ძებნის ფილტრები</param>
+    /// <returns>დეტალური ძებნის შედეგები</returns>
+    [HttpPost("advanced-search")]
+    public async Task<ActionResult<IEnumerable<AdvancedSearchResultDto>>> AdvancedSearch([FromBody] AdvancedSearchFiltersDto filters)
+    {
+        var query = new AdvancedSearchPersonsQuery { Filters = filters };
         var result = await _mediator.Send(query);
         return Ok(result);
     }
