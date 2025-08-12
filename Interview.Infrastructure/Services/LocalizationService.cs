@@ -1,31 +1,32 @@
 using Interview.Application.Services;
-using Interview.Api.Localization.Resources;
-using Microsoft.Extensions.Localization;
 using System.Globalization;
+using System.Resources;
 using System.Threading;
 
-namespace Interview.Api.Services;
+namespace Interview.Infrastructure.Services;
 
 /// <summary>
 /// ლოკალიზაციის სერვისის იმპლემენტაცია
 /// </summary>
 public class LocalizationService : ILocalizationService
 {
-    private readonly IStringLocalizer<SharedResource> _localizer;
-    
-    public LocalizationService(IStringLocalizer<SharedResource> localizer)
+    private readonly ResourceManager _resourceManager;
+
+    public LocalizationService()
     {
-        _localizer = localizer;
+        _resourceManager = new ResourceManager(
+            "Interview.Infrastructure.Localization.Resources.SharedResource",
+            typeof(LocalizationService).Assembly
+        );
     }
-    
+
     public string GetLocalizedString(string key)
     {
-        return _localizer[key];
+        return _resourceManager.GetString(key, CultureInfo.CurrentUICulture) ?? key;
     }
-    
+
     public string GetCurrentCulture()
     {
         return Thread.CurrentThread.CurrentCulture.Name;
     }
 }
-

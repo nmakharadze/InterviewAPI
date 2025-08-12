@@ -24,7 +24,7 @@ public class LocalizationMiddleware
         await _next(context);
     }
     
-    private string GetCultureFromHeader(string acceptLanguage)
+    private string GetCultureFromHeader(string? acceptLanguage)
     {
         if (acceptLanguage?.Contains("en") == true) return "en-US";
         return "ka-GE";

@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <data name="PersonNotFound" value="Person not found" />
-  <data name="InvalidInput" value="Invalid input" />
-  <data name="ValidationError" value="Validation error" />
-  <data name="DatabaseError" value="Database error" />
-  <data name="FileUploadError" value="File upload error" />
-  <data name="FileNotFound" value="File not found" />
-  <data name="Unauthorized" value="Unauthorized" />
-  <data name="InternalServerError" value="Internal server error" />
-  <data name="CurrentCulture" value="Current culture: {0}" />
-  <data name="LocalizedMessage" value="This is a localized message" />
-  <data name="TestErrorMessage" value="This is a test error message" />
-  <data name="WelcomeMessage" value="Welcome" />
-  <data name="OperationSuccessful" value="Operation completed successfully" />
-  <data name="OperationFailed" value="Operation failed" />
-  <data name="DataSaved" value="Data saved successfully" />
-  <data name="DataDeleted" value="Data deleted successfully" />
-  <data name="DataUpdated" value="Data updated successfully" />
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="PersonNotFound" xml:space="preserve"><value>Person not found</value></data>
+  <data name="InvalidInput" xml:space="preserve"><value>Invalid input</value></data>
+  <data name="ValidationError" xml:space="preserve"><value>Validation error</value></data>
+  <data name="DatabaseError" xml:space="preserve"><value>Database error</value></data>
+  <data name="FileUploadError" xml:space="preserve"><value>File upload error</value></data>
+  <data name="FileNotFound" xml:space="preserve"><value>File not found</value></data>
+  <data name="Unauthorized" xml:space="preserve"><value>Unauthorized</value></data>
+  <data name="InternalServerError" xml:space="preserve"><value>Internal server error</value></data>
+  <data name="CurrentCulture" xml:space="preserve"><value>Current culture: {0}</value></data>
+  <data name="LocalizedMessage" xml:space="preserve"><value>This is a localized message</value></data>
+  <data name="TestErrorMessage" xml:space="preserve"><value>This is a test error message</value></data>
+  <data name="WelcomeMessage" xml:space="preserve"><value>Welcome</value></data>
+  <data name="OperationSuccessful" xml:space="preserve"><value>Operation completed successfully</value></data>
+  <data name="OperationFailed" xml:space="preserve"><value>Operation failed</value></data>
+  <data name="DataSaved" xml:space="preserve"><value>Data saved successfully</value></data>
+  <data name="DataDeleted" xml:space="preserve"><value>Data deleted successfully</value></data>
+  <data name="DataUpdated" xml:space="preserve"><value>Data updated successfully</value></data>
 </root>

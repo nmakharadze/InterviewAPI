@@ -2,8 +2,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using Interview.Application.Services;
-using Microsoft.Extensions.Localization;
-using Interview.Api.Localization.Resources;
 
 namespace Interview.Api.Middleware;
 
@@ -77,22 +75,22 @@ public class GlobalExceptionHandlerMiddleware
 
     private string GetLocalizedErrorMessage(HttpContext context, Exception exception)
     {
-        var localizer = context.RequestServices.GetService<IStringLocalizer<SharedResource>>();
+        var localizationService = context.RequestServices.GetService<ILocalizationService>();
         
-        if (localizer == null)
+        if (localizationService == null)
         {
             return exception.Message;
         }
 
         return exception switch
         {
-            ArgumentException => localizer["InvalidInput"],
-            InvalidOperationException => localizer["ValidationError"],
-            ValidationException => localizer["ValidationError"],
-            DbUpdateException => localizer["DatabaseError"],
-            UnauthorizedAccessException => localizer["Unauthorized"],
-            FileNotFoundException => localizer["FileNotFound"],
-            _ => localizer["InternalServerError"]
+            ArgumentException => localizationService.GetLocalizedString("InvalidInput"),
+            InvalidOperationException => localizationService.GetLocalizedString("ValidationError"),
+            ValidationException => localizationService.GetLocalizedString("ValidationError"),
+            DbUpdateException => localizationService.GetLocalizedString("DatabaseError"),
+            UnauthorizedAccessException => localizationService.GetLocalizedString("Unauthorized"),
+            FileNotFoundException => localizationService.GetLocalizedString("FileNotFound"),
+            _ => localizationService.GetLocalizedString("InternalServerError")
         };
     }
 

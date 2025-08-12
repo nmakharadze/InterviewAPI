@@ -9,13 +9,38 @@ using System.Reflection;
 using Interview.Api.Middleware;
 using Interview.Api.Extensions;
 using Interview.Application.Dictionaries.Commands.Create;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.AddSecurityDefinition("Accept-Language", new OpenApiSecurityScheme
+    {
+        Name = "Accept-Language",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Description = "Culture code, e.g. en-US or ka-GE"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Accept-Language"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+});
 
 // Add DbContext
 builder.Services.AddDbContext<Interview.Infrastructure.Data.InterviewDbContext>(options =>

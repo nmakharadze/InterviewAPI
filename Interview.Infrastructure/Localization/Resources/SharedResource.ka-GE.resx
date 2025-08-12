@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <data name="PersonNotFound" value="ფიზიკური პირი ვერ მოიძებნა" />
-  <data name="InvalidInput" value="არასწორი შეყვანა" />
-  <data name="ValidationError" value="ვალიდაციის შეცდომა" />
-  <data name="DatabaseError" value="მონაცემთა ბაზის შეცდომა" />
-  <data name="FileUploadError" value="ფაილის ატვირთვის შეცდომა" />
-  <data name="FileNotFound" value="ფაილი ვერ მოიძებნა" />
-  <data name="Unauthorized" value="არაავტორიზებული" />
-  <data name="InternalServerError" value="სერვერის შიდა შეცდომა" />
-  <data name="CurrentCulture" value="მიმდინარე კულტურა: {0}" />
-  <data name="LocalizedMessage" value="ეს არის ლოკალიზებული მესიჯი" />
-  <data name="TestErrorMessage" value="ეს არის ტესტის შეცდომის მესიჯი" />
-  <data name="WelcomeMessage" value="კეთილი იყოს თქვენი მობრძანება" />
-  <data name="OperationSuccessful" value="ოპერაცია წარმატებით შესრულდა" />
-  <data name="OperationFailed" value="ოპერაცია ვერ შესრულდა" />
-  <data name="DataSaved" value="მონაცემები წარმატებით შენახულია" />
-  <data name="DataDeleted" value="მონაცემები წარმატებით წაშლილია" />
-  <data name="DataUpdated" value="მონაცემები წარმატებით განახლებულია" />
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="PersonNotFound" xml:space="preserve"><value>ფიზიკური პირი ვერ მოიძებნა</value></data>
+  <data name="InvalidInput" xml:space="preserve"><value>არასწორი შეყვანა</value></data>
+  <data name="ValidationError" xml:space="preserve"><value>ვალიდაციის შეცდომა</value></data>
+  <data name="DatabaseError" xml:space="preserve"><value>მონაცემთა ბაზის შეცდომა</value></data>
+  <data name="FileUploadError" xml:space="preserve"><value>ფაილის ატვირთვის შეცდომა</value></data>
+  <data name="FileNotFound" xml:space="preserve"><value>ფაილი ვერ მოიძებნა</value></data>
+  <data name="Unauthorized" xml:space="preserve"><value>არაავტორიზებული</value></data>
+  <data name="InternalServerError" xml:space="preserve"><value>სერვერის შიდა შეცდომა</value></data>
+  <data name="CurrentCulture" xml:space="preserve"><value>მიმდინარე კულტურა: {0}</value></data>
+  <data name="LocalizedMessage" xml:space="preserve"><value>ეს არის ლოკალიზებული მესიჯი</value></data>
+  <data name="TestErrorMessage" xml:space="preserve"><value>ეს არის ტესტის შეცდომის მესიჯი</value></data>
+  <data name="WelcomeMessage" xml:space="preserve"><value>კეთილი იყოს თქვენი მობრძანება</value></data>
+  <data name="OperationSuccessful" xml:space="preserve"><value>ოპერაცია წარმატებით შესრულდა</value></data>
+  <data name="OperationFailed" xml:space="preserve"><value>ოპერაცია ვერ შესრულდა</value></data>
+  <data name="DataSaved" xml:space="preserve"><value>მონაცემები წარმატებით შენახულია</value></data>
+  <data name="DataDeleted" xml:space="preserve"><value>მონაცემები წარმატებით წაშლილია</value></data>
+  <data name="DataUpdated" xml:space="preserve"><value>მონაცემები წარმატებით განახლებულია</value></data>
 </root>
