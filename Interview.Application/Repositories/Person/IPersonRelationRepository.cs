@@ -33,3 +33,4 @@ public interface IPersonRelationRepository
     /// </summary>
     Task DeleteAsync(int id);
 }
+

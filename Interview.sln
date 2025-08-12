@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interview.Domain", "Intervi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interview.Infrastructure", "Interview.Infrastructure\Interview.Infrastructure.csproj", "{E66378C8-F149-4AD6-B0EC-789F00DED7F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interview.Tests.Unit", "Interview.Tests.Unit\Interview.Tests.Unit.csproj", "{F5B735EA-D191-4C93-91AE-BCCE700F2762}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interview.Tests.Integration", "Interview.Tests.Integration\Interview.Tests.Integration.csproj", "{4A8A785D-4BF6-4C13-B6E6-A67683488C9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +40,13 @@ Global
 		{E66378C8-F149-4AD6-B0EC-789F00DED7F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E66378C8-F149-4AD6-B0EC-789F00DED7F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E66378C8-F149-4AD6-B0EC-789F00DED7F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5B735EA-D191-4C93-91AE-BCCE700F2762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5B735EA-D191-4C93-91AE-BCCE700F2762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5B735EA-D191-4C93-91AE-BCCE700F2762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5B735EA-D191-4C93-91AE-BCCE700F2762}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A8A785D-4BF6-4C13-B6E6-A67683488C9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A8A785D-4BF6-4C13-B6E6-A67683488C9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A8A785D-4BF6-4C13-B6E6-A67683488C9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A8A785D-4BF6-4C13-B6E6-A67683488C9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -13,3 +13,4 @@ public interface IPersonReportRepository
     /// </summary>
     Task<PersonReportDto> GetPersonRelationsReportAsync(int? personId = null, int? relationTypeId = null, CancellationToken cancellationToken = default);
 }
+
