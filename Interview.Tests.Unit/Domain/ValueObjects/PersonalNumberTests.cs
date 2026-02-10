@@ -90,3 +90,4 @@ public class PersonalNumberTests
         personalNumber.ToString().Should().Be("12345678901");
     }
 }
+
